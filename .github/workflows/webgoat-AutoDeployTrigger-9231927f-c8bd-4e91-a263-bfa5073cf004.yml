@@ -48,23 +48,3 @@ jobs:
           tags: ca2a2d1f10a1acr.azurecr.io/webgoat:${{ github.sha }}
           file: ./Dockerfile
           context: ./
-
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    
-    steps:
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.WEBGOAT_AZURE_CREDENTIALS }}
-
-
-      - name: Deploy to containerapp
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            az config set extension.use_dynamic_install=yes_without_prompt
-            az containerapp registry set -n webgoat -g webgoat --server ca2a2d1f10a1acr.azurecr.io --username  ${{ secrets.WEBGOAT_REGISTRY_USERNAME }} --password ${{ secrets.WEBGOAT_REGISTRY_PASSWORD }}
-            az containerapp update -n webgoat -g webgoat --image ca2a2d1f10a1acr.azurecr.io/webgoat:${{ github.sha }}

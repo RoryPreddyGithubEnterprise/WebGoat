@@ -281,63 +281,6 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <groupId>com.bazaarvoice.maven.plugins</groupId>
-                        <artifactId>process-exec-maven-plugin</artifactId>
-                        <version>0.9</version>
-                        <executions>
-                            <execution>
-                                <id>start-jar</id>
-                                <phase>pre-integration-test</phase>
-                                <goals>
-                                    <goal>start</goal>
-                                </goals>
-                                <configuration>
-                                    <workingDir>${project.build.directory}</workingDir>
-                                    <arguments>
-                                        <argument>java</argument>
-                                        <argument>-jar</argument>
-                                        <argument>-Dlogging.pattern.console=</argument>
-                                        <argument>-Dspring.main.banner-mode=off</argument>
-                                        <argument>-Dspring.datasource.url=jdbc:hsqldb:file:${java.io.tmpdir}/webgoat
-                                        </argument>
-                                        <argument>-Dwebgoat.port=${webgoat.port}</argument>
-                                        <argument>-Dwebwolf.port=${webwolf.port}</argument>
-                                        <argument>--add-opens</argument>
-                                        <argument>java.base/java.lang=ALL-UNNAMED</argument>
-                                        <argument>--add-opens</argument>
-                                        <argument>java.base/java.util=ALL-UNNAMED</argument>
-                                        <argument>--add-opens</argument>
-                                        <argument>java.base/java.lang.reflect=ALL-UNNAMED</argument>
-                                        <argument>--add-opens</argument>
-                                        <argument>java.base/java.text=ALL-UNNAMED</argument>
-                                        <argument>--add-opens</argument>
-                                        <argument>java.desktop/java.beans=ALL-UNNAMED</argument>
-                                        <argument>--add-opens</argument>
-                                        <argument>java.desktop/java.awt.font=ALL-UNNAMED</argument>
-                                        <argument>--add-opens</argument>
-                                        <argument>java.base/sun.nio.ch=ALL-UNNAMED</argument>
-                                        <argument>--add-opens</argument>
-                                        <argument>java.base/java.io=ALL-UNNAMED</argument>
-                                        <argument>--add-opens</argument>
-                                        <argument>java.base/java.util=ALL-UNNAMED</argument>
-                                        <argument>
-                                            ${project.build.directory}/webgoat-${project.version}.jar
-                                        </argument>
-                                    </arguments>
-                                    <waitForInterrupt>false</waitForInterrupt>
-                                    <healthcheckUrl>http://localhost:${webgoat.port}/WebGoat/</healthcheckUrl>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>stop-jar-process</id>
-                                <phase>post-integration-test</phase>
-                                <goals>
-                                    <goal>stop-all</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
                 </plugins>
             </build>
         </profile>

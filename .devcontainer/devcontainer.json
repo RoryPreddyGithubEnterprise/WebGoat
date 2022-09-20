@@ -39,7 +39,8 @@
 				"vscjava.vscode-java-pack",
 				"ms-vscode.vscode-node-azure-pack",
 				"ms-azuretools.vscode-docker",
-				"Pivotal.vscode-boot-dev-pack"
+				"Pivotal.vscode-boot-dev-pack",
+				"github.vscode-codeql"
 			]
 		}
 	},
